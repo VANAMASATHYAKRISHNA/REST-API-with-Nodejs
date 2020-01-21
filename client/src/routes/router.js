@@ -26,5 +26,6 @@ export default new Router({
             path: '/products',
             component: Products
         }
-    ]
+    ],
+    mode: history
 })
