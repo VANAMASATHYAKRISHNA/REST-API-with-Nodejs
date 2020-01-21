@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: REST API
+  description: "Rest api E-commerce "
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: sathya.krishna@solix.com
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: "http://swagger.io"
+servers:
+  - url: "http://localhost:3000/"
+tags:
+  - name: products
+paths:
+  /products/:
+    get:
+      tags:
+        - products
+      summary: Get the list of products
+      description: These is the end point for getting all the products
+      operationId: get the products
+      responses:
+        "200":
+          description: Successfully retrieved
+          content: {}
+        "405":
+          description: Invalid input
+          content: {}
+    post:
+      tags:
+        - products
+      security:
+        - ApiKeyAuth: []
+      summary: AddIng a products into data base
+      description: In these end point we are adding products
+      operationId: createUsersWithListInput
+      requestBody:
+        description: List of product object
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: integer
+                productImage:
+                  type: string
+                  format: binary
+
+        required: true
+      responses:
+        200:
+          description: "sucessfully product inserted"
+        400:
+          description: "product insertion is failed"
+
+  /products/productId/:
+    get:
+      tags:
+        - products
+      summary: Get the product by id
+      description: These end point for getting a product by id
+      parameters:
+        - name: productId
+          in: query
+          description: these is unique identifier of product
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/products"
+        "400":
+          description: Invalid status value
+          content: {}
+components:
+  schemas:
+    products:
+      type: object
+      properties:
+        productId:
+          type: string
+        name:
+          type: string
+        price:
+          type: integer
+  securitySchemes:
+    ApiKeyAuth: # arbitrary name for the security scheme
+      type: apiKey
+      in: header # can be "header", "query" or "cookie"
+      name: Authorization # name of the header, query parameter or cookie

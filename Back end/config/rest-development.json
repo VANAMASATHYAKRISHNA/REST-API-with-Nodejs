@@ -1,0 +1,10 @@
+{
+    "db": {
+        "connectionUrl": "mongodb+srv://sathya:sathya143@cluster0-vclou.mongodb.net/node",
+        "database": "mongodb"
+    },
+    "server": {
+        "port": 3000,
+        "host": "localhost"
+    }
+}
