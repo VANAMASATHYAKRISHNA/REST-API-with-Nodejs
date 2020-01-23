@@ -1,33 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import Registeration from './components/Registeration.vue'
-import login from './components/login.vue'
-import Home from './components/Home.vue'
-import Products from './components/Products.vue'
+import router from './routes/router'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.config.productionTip = false
+import {
+  BootstrapVue,
+  IconsPlugin
+} from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 Vue.use(VueRouter);
-const routes = [{
-    path: '/signup',
-    component: Registeration
-  }, {
-    path: '/login',
-    component: login
-  },
-  {
-    path: '/',
-    component: Home
-  },
-  {
-    path: '/products',
-    component: Products
-  }
-];
 
-const router = new VueRouter({
-  routes: routes,
-  mode: "history"
-})
 
 new Vue({
   router: router,
